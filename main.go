@@ -4,18 +4,26 @@ import (
 	"jwt-authentication-golang/controllers"
 	"jwt-authentication-golang/database"
 	"jwt-authentication-golang/middlewares"
+	"jwt-authentication-golang/utils"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	config, err := utils.LoadConfig(".")
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
+
 	// Initialize Database
-	database.Connect("root:root@tcp(localhost:3306)/jwt_demo?parseTime=true")
+	database.Connect(config.DBConStr)
 	database.Migrate()
 
 	// Initialize Router
 	router := initRouter()
-	router.Run(":8080")
+	//router.Run(":8080")
+	router.Run(config.ServerAddress)
 }
 
 func initRouter() *gin.Engine {
@@ -27,6 +35,7 @@ func initRouter() *gin.Engine {
 		secured := api.Group("/secured").Use(middlewares.Auth())
 		{
 			secured.GET("/ping", controllers.Ping)
+			secured.POST("/chat/", controllers.Call)
 		}
 	}
 	return router
