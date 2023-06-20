@@ -6,8 +6,8 @@ content-type: application/json
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im11a2VzaC5tdXJ1Z2FuIiwiZW1haWwiOiJtdWtlc2hAZ28uY29tIiwiZXhwIjoxNjg2OTEzMjgyfQ.yHHHTl2LHtC6iknKU18zV5IeUsXo89ASeUe3wF0vxWE
 
 {
-    "Instruction": "Tell me about a company",
-	"Input": "Global Fasion Group",
+    "Instruction": "Should I do to make work more efficien?",
+	"Input": "",
 	"Temperature": 0.1,
 	"TopP": 0.75,
 	"TopK":40,
